@@ -18,14 +18,17 @@
   Mozaffar_ad-Din:0 "Mozaffar ad-Din"
   Puyi:0 "Puyi"
   Wazir_Akbar:0 "Wazir Akbar"
-  Yoshinobu:0 "Yoshinobu"
+  #Yoshinobu:0 "Yoshinobu"
   Zaichun:0 "Zaichun"
   Zaitian:0 "Zaitian"
+  Ayahito:0 "Ayahito"
+  Yoshihito:0 "Yoshihito"
+  Hirohito:0 "Hirohito"
 
 #Europe
   Alexander_Ferdinand:0 "Alexander Ferdinand"
   Eitel_Friedrich:0 "Eitel Friedrich"
-  Franz_Ferdinand:0 "Franz Ferdinand"
+  #Franz_Ferdinand:0 "Franz Ferdinand"
   Friedrich_Karl:0 "Friedrich Karl"
   Friedrich_Leopold:0 "Friedrich Leopold"
   Friedrich_Sigismund:0 "Friedrich Sigismund"
@@ -35,7 +38,7 @@
   Maximilian_Eugen:0 "Maximilian Eugen"
   Otto_Franz:0 "Otto Franz"
   Viktoria_Margarete:0 "Viktoria Margarete"
-  Vsevolod:0 "Vsevolod"
+  #Vsevolod:0 "Vsevolod"
   Waldemar:0 "Waldemar"
   Wilhelm_Viktor:0 "Wilhelm_Viktor"
 

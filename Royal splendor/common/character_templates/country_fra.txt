@@ -413,6 +413,27 @@ FRA_henri_06_de_orleans = {
 }
 
 # Legitimists
+FRA_charles_X_de_bourbon = {
+    # Charles X, King of France
+    first_name = "Charles"
+    last_name = "de_Bourbon"
+    historical = yes
+    ruler = yes
+    birth_date = 1757.10.9
+    dna = dna_fra_bourbon_charles_10
+    culture = cu:french
+    interest_group = ig_landowners
+    ideology = ideology_legitimist
+    traits = {
+        arrogant
+        bigoted
+    }
+    on_created = {
+        set_variable = {
+            name = legitimist_leader
+        }
+    }
+}
 
 FRA_louis_antoine_de_bourbon = {
 	# Louis Antoine, Duke of Angoulême

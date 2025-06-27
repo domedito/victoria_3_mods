@@ -1,5 +1,5 @@
 ﻿CHARACTERS = {
-	c:EGY = {
+	c:EGY ?= {
 		create_character = {
 			template = is_egy_muhammad_ali
 		}	

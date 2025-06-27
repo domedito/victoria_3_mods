@@ -2296,10 +2296,39 @@ on_character_death = {
 				}	
 			}
 		}
-		# AUSTRIA Ludwig Viktor 01 Dies as Ruler [WIP, nothing yet]
-		# aus_monarch_death.6
-		# aus_heir_death.5
-		# AUSTRIA Ludwig Viktor 01 Dies as Ruler [WIP, nothing yet]
+        # AUSTRIA Ludwig Viktor 01 Dies as Heir
+        if = {
+            limit = {
+                AND = { 
+                    is_heir = yes
+                    has_template = is_aus_ludwig_viktor_01
+                }
+            }
+            owner = {
+                trigger_event = {
+                    id = aus_heir_death.5
+                    days = 1
+                }	
+            }
+        }		
+        # AUSTRIA Ludwig Viktor 01 Dies come Ruler
+        if = {
+            limit = {
+                AND = { 
+                    is_ruler = yes
+                    has_template = is_aus_ludwig_viktor_01
+                    owner = {
+                        any_scope_character = { is_heir = yes is_historical = yes }
+                    }
+                }
+            }
+            owner = {
+                trigger_event = {
+                    id = aus_monarch_death.6
+                    days = 1
+                }	
+            }
+        }
 
 		# AUSTRIA Franz Ferdinand 01 Dies as Ruler
 		if = {
@@ -2999,6 +3028,24 @@ on_character_death = {
 			}
 		}
 
+        # FRANCE BOURBON Charles 10 Dies as Ruler
+        if = {
+            limit = {
+                AND = { 
+                    is_ruler = yes
+                    has_template = FRA_charles_X_de_bourbon
+                    owner = {
+                        any_scope_character = { is_heir = yes is_historical = yes }
+                    }
+                }
+            }
+            owner = {
+                trigger_event = {
+                    id = fra_bourbon_monarch_death.1
+                    days = 1
+                }	
+            }
+        }
 		# FRANCE BOURBON Louis 19 Dies as Ruler
 		if = {
 			limit = {
@@ -4707,6 +4754,21 @@ on_character_death = {
 				}	
 			}
 		}
+        # PRUSSIA ALTERNATE Wilhelm 04 Dies as Heir
+        if = {
+            limit = {
+                AND = { 
+                    is_heir = yes
+                    has_template = is_pru_wilhelm_04
+                }
+            }
+            owner = {
+                trigger_event = {
+                    id = pru_heir_death.6
+                    days = 1
+                }	
+            }
+        }
 		# PRUSSIA ALTERNATE Friedrich Karl 01 Dies as Ruler
 		if = {
 			limit = {

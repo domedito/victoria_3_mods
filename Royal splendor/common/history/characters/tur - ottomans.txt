@@ -46,18 +46,7 @@ CHARACTERS = {
 		}
 
 		create_character = {
-			# Mustafa Pasha Bushatli, last hereditary governor of northern Albania
-			first_name = "Mustafa"
-			last_name = "Bushatli"
-			historical = yes
-			age = 39 # not sure of his actual birth date, born in 1797
-			ig_leader = yes
-			culture = cu:albanian
-			interest_group = ig_rural_folk
-			ideology = ideology_moderate
-			traits = {
-				imperious
-			}
+			template = TUR_mustafa_bushatli
 		}	
 
 		create_character = {
