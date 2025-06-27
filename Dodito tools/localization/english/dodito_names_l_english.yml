@@ -1,0 +1,46 @@
+﻿l_english:
+ dodito_Vittorio_Emanuele_II:0 "Vittorio Emanuele II"
+ dodito_Umberto_I:0 "Umberto I"
+ dodito_Vittorio_Emanuele_III:0 "Vittorio Emanuele III"
+ dodito_Vincenzo:0 "Vincenzo"
+ dodito_Gioberti:0 "Gioberti"
+ dodito_Benso_Cavour:0 "Benso conte di Cavour"
+ dodito_Urbano:0 "Urbano"
+ dodito_Rattazzi:0 "Rattazzi"
+ dodito_Giovanni:0 "Giovanni"
+ dodito_Giolitti:0 "Giolitti"
+ 
+ dodito_Benito:0 "Benito"
+ dodito_Mussolini:0 "Mussolini"
+
+ Mutsuhito:0 "Mutsuhito"
+ 
+ austrian_nerf_modifier: "Widespread cultural discrimination"
+ italian_nationalist_unrest: "Il grido di dolore si leva dalla Nazione"
+ dodito_ig_forced_to_open_market: "Japan has been forced to open to foreign investors"
+ bonaparte_heir: "The new Napoleon"
+ schleswig_holstein_support: "Support for the Schleswig-Holstein question"
+ schleswig_holstein_neutrality: "Neutrality for the Schleswig-Holstein question"
+ rsm_support: "Risorgimento is independence"
+ risorgimento_neutrality: "no interest in Risorgimento"
+ italy_support: "Support for a united Italy"
+ anti_unification_country: "There exists an opposing Italian country"
+ dodito_trade_colony_modifier: "Pearl of the Orient"
+ dodito_opium_exporter_modifier: "Let the opium flow"
+ Weak_RSM_Oppressor: "There exists a foreign Lombardy-venetia owner and who's army is weaker than that of France"
+
+
+ Cavour_rises: "Cavour rises"
+ Cavour_rises.desc: "A new era begins for Italy."
+ Cavour.1: "Camillo Benso count of Cavour is an active political leader"
+ Gioberti_returns: "Gioberti returns"
+ Gioberti_returns.desc: "A shift in Italian politics."
+ dodito.1.name: "A New Spark for Italy"
+ dodito.1.desc: "A wave of enthusiasm sweeps through the Italian states, pushing for unification."
+ dodito.1.a: "Embrace the fervor!"
+ dodito.2.name: "Whispers of Unity"
+ dodito.2.desc: "Small groups gather, discussing the future of Italy."
+ dodito.2.a: "Listen to the people."
+ #~ is_italy_tt: "You are the glorious nation of Italy!" # Esempio per is_italy_tt
+ #~ owns_no_italian_homelands_tt: "Does not own any North or South Italian homelands." # Esempio
+ #~ je_risorgimento_italian_minors_tt: "As an Italian minor, unite your brethren!" # Esempio

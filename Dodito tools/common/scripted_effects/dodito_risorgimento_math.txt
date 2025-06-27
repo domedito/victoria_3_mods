@@ -1,0 +1,11 @@
+﻿dodito_risorgimento_math = {
+	set_variable = {
+		name = italian_states_radicals_total_bar
+		value = radical_population_fraction
+	}
+	change_variable = 
+	{
+		name = italian_states_radicals_total_bar
+		multiply = 100
+	}
+}

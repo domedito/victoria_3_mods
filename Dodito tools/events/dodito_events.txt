@@ -1,0 +1,93 @@
+﻿namespace = dodito
+
+#Cavour
+dodito.1 = {
+	type = country_event
+
+	placement = ROOT
+	title = "Cavour_rises"
+	desc = "Cavour_rises.desc"
+	flavor = historic_monarch_birth.f
+
+	duration = 1
+
+	gui_window = event_window_1char_tabloid
+	left_icon = scope:father_of_heir
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+
+	trigger = {
+		c:SAR ?= root 
+		ig:ig_industrialists = {
+			leader = {
+				NOT = { has_template = sar_benso_character_template }
+			}
+		}
+		game_date >= 1852.1.1
+		game_date <= 1870.1.1
+	}
+
+	immediate = {
+		ig:ig_industrialists = {
+			leader = {
+				kill_character = yes
+			}
+		}
+	}
+
+	option = {
+		name = "Cavour_rises"
+		default_option = yes
+	}
+}
+
+#Gioberti
+dodito.2 = {
+	type = country_event
+
+	placement = ROOT
+	title = "Gioberti_returns"
+	desc = "Gioberti_returns.desc"
+	flavor = historic_monarch_birth.f
+
+	duration = 1
+
+	gui_window = event_window_1char_tabloid
+	left_icon = scope:father_of_heir
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+
+	trigger = {
+		c:SAR ?= root
+		is_unification_candidate = ITA
+		NOT = { has_variable = gioberti_var }
+		ig:ig_devout = {
+			leader = {
+				NOT = { has_template = dodito_vincenzo_gioberti_character_template }
+			}
+		}
+		game_date >= 1848.1.1
+		game_date <= 1855.1.1
+	}
+
+	immediate = {
+		ig:ig_devout = {
+			leader = {
+				kill_character = yes
+			}
+		}
+		set_variable = gioberti_var
+	}
+
+
+	option = {
+		name = "Gioberti_returns"
+		default_option = yes
+	}
+}

@@ -1,0 +1,534 @@
+﻿# Root = Country
+on_country_formed = {
+	on_actions = {
+		italy_formed_on_action
+	}
+}
+
+italy_formed_on_action = {
+	effect = {
+		if = {
+			limit = {
+				c:ITA ?= this
+				is_player = no
+			}
+			# ~ s:STATE_LAZIO = {
+				# ~ limit = { owner = ROOT }
+				# ~ ROOT = {
+					# ~ set_capital = STATE_LAZIO
+				# ~ }
+			# ~ }
+			if = {
+				limit = { 
+					ROOT = { 
+						any_scope_state = {
+							state_region = s:STATE_LAZIO
+							is_split_state = no
+						}
+					} 
+				}
+				ROOT = {
+					set_capital = STATE_LAZIO
+				}
+				random_scope_state = {
+					limit = {
+						state_region = s:STATE_LAZIO
+					}
+					add_modifier = {
+						name = modifier_restored_capital_to_rome
+						days = normal_modifier_time
+					}
+				}
+			}
+			
+			ROOT = {
+				if = {
+					limit = {
+						has_law = law_type:no_schools
+					}
+					activate_law = law_type:law_religious_schools
+				}
+				if = {
+					limit = {
+						has_law = law_type:law_autocracy
+					}
+					activate_law = law_type:law_landed_voting
+				}
+			}
+			
+			s:STATE_SOUTH_TYROL = {
+				add_homeland = cu:north_italian
+			}
+			s:STATE_ISTRIA = {
+				add_homeland = cu:north_italian
+			}
+
+			# United Italy is diplomatically isolated
+			if = {
+				limit = {
+					any_scope_treaty = {
+						binds = scope:FRA
+						any_scope_article = {
+							OR = {
+								has_type = alliance
+								has_type = defensive_pact
+							}
+						}
+					}
+				}
+				every_scope_treaty = {
+					limit = {
+						binds = scope:FRA
+						any_scope_article = {
+							OR = {
+								has_type = alliance
+								has_type = defensive_pact
+							}
+						}
+					}
+					withdraw = {
+						country = root
+					}
+				}
+			}			
+			
+			# United Italy has profound divisions
+			every_state = {
+				limit = {
+					state_region = { 
+						is_homeland = cu:south_italian 
+					}
+				}
+				remove_modifier = recently_conquered_state
+				if = {
+					limit = {
+						NOR = { 
+							state_region = s:STATE_LAZIO
+							state_region = s:STATE_SARDINIA
+							state_region = s:STATE_UMBRIA
+						}
+					}
+					add_modifier = {
+						name = recently_conquered_state
+						months = 600
+						is_decaying = yes
+					}
+					add_radicals_in_state = {
+						value = 0.3
+						culture = cu:south_italian
+					}
+				}
+			}
+			
+		}
+		
+	}
+}
+
+# Root = Country
+# This action is triggered after `on_revolution_end`
+on_civil_war_won = {
+	on_actions = {
+		reset_capital_on_action
+	}
+}
+
+reset_capital_on_action = {
+	effect = {
+		# Rome
+		if = { 
+			limit = { 
+				ROOT = { 
+					c:ITA ?= this 
+					any_scope_state = {
+						state_region = s:STATE_LAZIO
+						is_split_state = no
+					}
+				} 
+			}
+			ROOT = {
+				set_capital = STATE_LAZIO
+			}
+		}
+		# Paris
+		if = { 
+			limit = { 
+				ROOT = { 
+					c:FRA ?= this 
+					any_scope_state = {
+						state_region = s:STATE_ILE_DE_FRANCE
+						is_split_state = no
+					}
+				} 
+			}
+			ROOT = {
+				set_capital = STATE_ILE_DE_FRANCE
+			}
+		}
+		# Vienna
+		if = { 
+			limit = { 
+				ROOT = { 
+					c:AUS ?= this 
+					any_scope_state = {
+						state_region = s:STATE_AUSTRIA
+						is_split_state = no
+					}
+				} 
+			}
+			ROOT = {
+				set_capital = STATE_AUSTRIA
+			}
+		}
+	}
+}
+
+
+# Root = Diplomatic Play
+# scope:actor = Initiator country
+# scope:target = Target country
+on_war_end = {
+	on_actions = {
+		indipendence_war_end_on_action
+		franco_prussian_war_end_on_action
+	}
+}
+
+# Root = Diplomatic Play
+on_diplo_play_back_down = {
+	on_actions = {
+		indipendence_war_end_on_action
+		franco_prussian_war_end_on_action
+	}
+}
+
+# Root = Diplomatic Play
+on_diplo_play_back_down_involved = {
+	on_actions = {
+		indipendence_war_end_on_action
+		franco_prussian_war_end_on_action
+	}
+}
+
+indipendence_war_end_on_action = {
+	effect = {
+		ordered_country = {
+			limit = {
+				has_variable = risorgimento_unifying_stance
+			}
+			order_by = prestige
+			save_scope_as = risorgimento_leader
+		}
+		# Italian independence war WON
+		if = {
+			limit = {
+				any_country = {
+					OR = {
+						country_has_primary_culture = cu:north_italian
+						country_has_primary_culture = cu:south_italian
+					}
+					any_scope_state = {
+						OR = {
+							state_region = s:STATE_LOMBARDY
+							state_region = s:STATE_VENETIA
+						}
+					}
+					is_secessionist = no
+					# is_at_war = no
+					is_player = no
+				}
+			}
+			# First war of Independence won (started with the explicit intent to annex to Sardinia-Piedmont)
+			scope:risorgimento_leader = {
+				if = {
+					limit = {
+						any_country = {
+							c:RSM ?= this
+							is_at_war = no
+							is_secessionist = no
+						}
+					}
+					annex_with_incorporation = c:RSM
+				}
+			}
+			# Lombardy liberated
+			random_country = {
+				limit = {
+					NOT =  { c:RSM ?= this }
+					NOT = { has_variable = won_back_lombardy_var }
+					OR = {
+						country_has_primary_culture = cu:north_italian
+						country_has_primary_culture = cu:south_italian
+					}
+					any_scope_state = {
+						state_region = s:STATE_LOMBARDY
+					}
+				}
+				every_scope_state = {
+					limit = {
+						state_region = s:STATE_LOMBARDY
+					}
+					add_radicals_in_state = {
+						value = -0.8
+						culture = cu:north_italian
+					}
+					add_loyalists_in_state = {
+						value = 0.3 #very_large_radicals
+						culture = cu:north_italian
+					}
+				}
+				set_variable = won_back_lombardy_var
+			}
+			# Venetia liberated				
+			random_country = {
+				limit = {
+					NOT =  { c:RSM ?= this }
+					NOT = { has_variable = won_back_venetia_var }
+					OR = {
+						country_has_primary_culture = cu:north_italian
+						country_has_primary_culture = cu:south_italian
+					}
+					any_scope_state = {
+						state_region = s:STATE_VENETIA
+					}
+				}
+				every_scope_state = {
+					limit = {
+						state_region = s:STATE_VENETIA
+					}
+					add_radicals_in_state = {
+						value = -0.8
+						culture = cu:north_italian
+					}
+					add_loyalists_in_state = {
+						value = 0.3 #very_large_radicals
+						culture = cu:north_italian
+					}
+				}
+				set_variable = won_back_venetia_var
+			}
+			# Honour promise
+			if = {
+				limit = {
+					OR = {
+						any_scope_play_involved = { c:FRA ?= this }
+						c:FRA = { has_variable = helped_winning_war }
+					}
+					any_country = {
+						# is_at_war = no
+						has_global_variable = fra_savoy_sardinia 
+						has_variable = won_back_lombardy_var
+					}
+				}
+				random_country = {
+					limit = {
+						# is_at_war = no
+						has_global_variable = fra_savoy_sardinia 
+						has_variable = won_back_lombardy_var
+					}
+					if = {
+						limit = {
+							any_scope_state = {
+								state_region = s:STATE_SAVOY
+							}
+							c:FRA = { 
+								OR = {
+									owes_obligation_to = prev
+									has_variable = helped_winning_war
+								}
+							}
+						}
+						c:FRA = { 
+							remove_variable = helped_winning_war
+							trigger_event = { id = natural_borders.3 popup = yes } 
+						}
+					}
+					else = {
+						c:FRA = {
+							set_variable = helped_winning_war
+						}
+					}
+					c:FRA = {
+						if = {
+							limit = {
+								owes_obligation_to = prev
+							}
+							set_owes_obligation_to = {
+								country = prev
+								setting = no
+							}
+						}
+					}
+				}
+			}			
+			# Call for lesser pan-nationalists to annex to us
+			every_country = {
+				limit = {
+					is_player = no
+					is_at_war = no
+					is_secessionist = no
+					OR = {
+						is_subject = no
+						is_subject_of = scope:risorgimento_leader
+					}
+					has_journal_entry = je_risorgimento
+					OR = {
+						country_rank < rank_value:minor_power
+						any_scope_state = {
+							count < 2
+						}
+					}
+				}
+				
+				# ~ add_radicals = {
+					# ~ value = 0.7 #very_large_radicals
+					# ~ culture = cu:south_italian
+				# ~ }
+				# ~ add_radicals = {
+					# ~ value = 0.7 #very_large_radicals
+					# ~ culture = cu:north_italian
+				# ~ }
+				save_scope_as = italian_pannational_country
+				random_country = {
+					limit = {
+						has_variable = won_back_lombardy_var
+					}
+					trigger_event = { id = italian_unification.5 popup = yes }
+				}
+			}
+
+		}
+		# Italian independence war LOST
+		else_if = {
+			limit = {
+				any_country = {
+					NOR = {
+						country_has_primary_culture = cu:north_italian
+						country_has_primary_culture = cu:south_italian
+					}
+					any_scope_state = {
+						OR = {
+							state_region = s:STATE_LOMBARDY
+							state_region = s:STATE_VENETIA
+						}
+					}
+				}
+				any_country = {
+					OR = {
+						country_has_primary_culture = cu:north_italian
+						country_has_primary_culture = cu:south_italian
+					}
+				}
+			}
+			every_country = {
+				limit = {
+					NOT = {
+						any_scope_state = {
+							state_region = s:STATE_LOMBARDY
+						}
+					}				
+					has_variable = won_back_lombardy_var
+				}
+				remove_variable = won_back_lombardy_var
+			}
+			every_country = {
+				limit = {
+					NOT = {
+						any_scope_state = {
+							state_region = s:STATE_VENETIA
+						}
+					}
+					has_variable = won_back_venetia_var
+				}
+				remove_variable = won_back_venetia_var
+			}
+			# Upset risorgimento leader nationalists only once
+			random_country = {
+				limit = {
+					has_variable = lombardy_venetia_secession_var 
+					NOT = { has_variable = failed_lombardy_venetia_secession_var }
+				}
+				remove_variable = lombardy_venetia_secession_var
+				set_variable = failed_lombardy_venetia_secession_var
+				every_scope_state = {
+					add_radicals_in_state = {
+						value = 1 #0.5 # very_large_radicals
+						culture = cu:north_italian
+					}
+					add_radicals_in_state = {
+						value = 1 #0.5 # very_large_radicals
+						culture = cu:south_italian
+					}
+				}
+			}
+			# The treaty of Turin is still possible
+			if = {
+				limit = {
+					any_scope_play_involved = { c:FRA ?= this }
+					has_global_variable = fra_savoy_sardinia 
+					any_country = {
+						NOT = { this = c:FRA }
+						is_at_war = no
+						any_scope_state = {
+							state_region = s:STATE_SAVOY
+						}
+					}
+				}
+				random_country = {
+					limit = {
+						any_scope_state = {
+							state_region = s:STATE_SAVOY
+						}
+					}
+					c:FRA = { 
+						set_owes_obligation_to = {
+							country = prev
+							setting = no
+						}
+					}
+				}				
+
+				remove_global_variable = fra_savoy_sardinia
+				remove_global_variable = fra_annexed_savoy
+			}
+		}
+	}
+}
+
+franco_prussian_war_end_on_action = {
+	effect = {
+		if = {
+			limit = {
+				any_country = {
+					OR = {
+						c:PRU ?= this
+						c:NGF ?= this
+						c:GER ?= this
+					}
+
+					any_scope_state = {
+						state_region = s:STATE_ALSACE_LORRAINE
+					}
+					any_scope_state = {
+						state_region = s:STATE_BRANDENBURG
+					}
+				}
+			}
+			if = {
+				limit = {
+					# ~ scope:diplomatic_play_type = play_type:dp_unify_germany
+					# ~ OR = {
+						# ~ scope:diplomatic_play.target = { c:FRA ?= this }
+						# ~ any_scope_play_involved = { c:FRA ?= this }
+					# ~ }
+					c:FRA = {
+						has_law = law_type:law_monarchy
+					}
+				}
+				c:FRA = { 
+					trigger_event = { id = french_pretenders.6 popup = yes } 
+				}
+			}
+		}
+	}
+}

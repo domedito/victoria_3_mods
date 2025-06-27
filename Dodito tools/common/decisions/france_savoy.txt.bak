@@ -1,0 +1,411 @@
+﻿france_annex_savoy = {
+	is_shown = {
+		has_dlc_feature = voice_of_the_people_content
+		exists = c:FRA
+		c:FRA = ROOT
+		NOT = { has_global_variable = fra_annexed_savoy }
+		is_subject = no
+		NOT = { owns_entire_state_region = STATE_SAVOY }
+		any_country = {
+			NOT = { THIS = ROOT }
+			any_scope_state = {
+				state_region = s:STATE_SAVOY
+				is_split_state = no
+				is_capital = no
+			}
+			is_player = no
+		}
+	}
+
+	possible = {
+		has_technology_researched = nationalism
+		any_country = {
+			custom_tooltip = {
+				text = at_peace_nocontext_tt
+				is_at_war = no
+			}
+			any_scope_state = {
+				state_region = s:STATE_SAVOY
+				is_split_state = no
+				is_capital = no
+			}
+			custom_tooltip = {
+				text = relations_amicable_nocontext_tt
+				relations:root >= relations_threshold:amicable
+			}
+			is_revolutionary = no
+			OR = {
+				is_subject = no
+				is_subject_of = ROOT
+			}
+			trigger_if = {
+				limit = {
+					is_subject = no
+				}
+				owes_obligation_to = ROOT
+			}
+		}
+	}
+
+	when_taken = {
+		set_global_variable = fra_annexed_savoy
+		custom_tooltip = obligation_for_savoy_tt
+		trigger_event = { id = natural_borders.3 popup = yes }
+		show_as_tooltip = {
+			s:STATE_SAVOY = {
+				remove_homeland = cu:north_italian
+			}
+		}
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}
+
+sell_savoy = {
+	is_shown = {
+		exists = c:FRA
+		NOT = { has_global_variable = fra_annexed_savoy }
+		OR = {
+			any_scope_state = {
+				state_region = s:STATE_SAVOY
+				is_split_state = no
+				is_capital = no
+			}
+			any_scope_state = {
+				state_region = s:STATE_PROVENCE
+				is_capital = no
+			}
+		}
+		is_subject = no
+	}
+
+	possible = {
+		OR = {
+			custom_tooltip = {
+				text = "Camillo Benso count of Cavour is an active political leader"
+				any_interest_group = {
+					leader = {
+						has_template = sar_benso_character_template
+					}
+				}
+			}
+			AND = {
+				# ~ has_technology_researched = pan-nationalism
+				has_technology_researched = nationalism
+				is_unification_candidate = ITA
+			}
+		}
+		is_at_war = no
+		c:FRA = {
+			is_at_war = no
+			owns_entire_state_region = STATE_RHONE
+			is_subject = no
+			NOT = { owes_obligation_to = ROOT }
+			OR = {
+				relations:root > relations_threshold:poor
+				any_scope_treaty = {
+					binds = scope:root
+					any_scope_article = {
+						OR = 
+						{
+							has_type = defensive_pact
+							has_type = guarantee_independence
+						}
+					}
+				}			
+			}
+		}
+		custom_tooltip = {
+			text = "There exists a foreign Lombardy-venetia owner and who's army is weaker than that of France"
+			any_country = {
+				NOR = {
+					country_has_primary_culture = cu:north_italian
+					country_has_primary_culture = cu:south_italian
+				}
+				any_scope_state = {
+					OR = {
+						state_region = s:STATE_LOMBARDY
+						state_region = s:STATE_VENETIA
+					}
+				}
+				"ai_army_comparison(c:FRA)" < 0
+			}
+		}
+	}
+
+	when_taken = {
+		set_global_variable = fra_annexed_savoy
+		set_global_variable = fra_savoy_sardinia
+
+
+		show_as_tooltip = {
+			every_scope_state = {
+				limit = {
+					OR = {
+						state_region = s:STATE_SAVOY
+						state_region = s:STATE_PROVENCE
+					}
+				}
+				set_state_owner = c:FRA
+			}
+			s:STATE_SAVOY = {
+				remove_homeland = cu:north_italian
+			}
+		}
+		c:FRA = {
+			set_owes_obligation_to = {
+				country = ROOT
+				setting = yes
+			}
+			change_relations = { 
+				country = ROOT value = 30
+			}
+			set_secret_goal = {
+				country = ROOT
+				secret_goal = protect
+			}		
+			create_treaty = {
+				first_country = root
+				second_country = c:AFG
+
+				is_draft = no
+				binding_period = { years = 10 }
+
+				articles_to_create = {
+					{
+						article = defensive_pact
+					}
+				}
+			}
+			# questo sarà emesso una volta vinta la guerra in on_actions
+			# trigger_event = { id = natural_borders.3 popup = yes } 
+		}
+		hidden_effect = {
+			every_scope_state = {
+				limit = {
+					OR = {
+						state_region = s:STATE_SAVOY
+						state_region = s:STATE_PROVENCE
+					}
+				}
+				add_radicals_in_state = {
+					culture = cu:north_italian
+					value = 0.5 # very_large_radicals
+				}
+				add_radicals_in_state = {
+					culture = cu:francoprovencal
+					value = 0.5 # very_large_radicals
+				}
+			}
+		}
+
+		random_country = {
+			limit = {
+				NOR = {
+					country_has_primary_culture = cu:north_italian
+					country_has_primary_culture = cu:south_italian
+				}
+				any_scope_state = {
+					OR = {
+						state_region = s:STATE_LOMBARDY
+						state_region = s:STATE_VENETIA
+					}
+				}
+				is_player = no
+				ROOT = { is_player = no }
+				c:FRA = { is_player = no }
+			}
+			save_scope_as = italian_oppressor
+			
+			c:FRA = {
+				change_relations = { 
+					country = prev 
+					value = 
+					{
+						value = "c:FRA.ai_army_comparison(scope:italian_oppressor)" # -30 
+						multiply = -100
+						add = -30
+					}
+				}
+
+				# ~ if = {
+					# ~ limit = {
+						# ~ is_power_bloc_leader = yes
+						# ~ is_in_same_power_bloc = prev
+					# ~ }
+					# TODO: kick out of power bloc
+				# ~ }
+				if = {
+					limit = {
+						any_scope_treaty = {
+							binds = scope:prev
+							any_scope_article = {
+								has_type = alliance
+							}
+						}
+					}
+					# TODO: remove treaty
+					#remove_diplomatic_pact = {
+					#	country = prev
+					#	type = alliance
+					#}
+				}
+				if = {
+					limit = {
+						any_scope_treaty = {
+							binds = scope:prev
+							any_scope_article = {
+								has_type = defensive_pact
+							}
+						}
+					}
+					# TODO: remove treaty
+					#remove_diplomatic_pact = {
+					#	country = prev
+					#	type = defensive_pact
+					#}
+				}
+				# TODO: remove protectorate
+				#if = {
+				#	limit = {
+				#		has_diplomatic_pact = {
+				#			who = prev
+				#			type = protectorate
+				#		}
+				#	}
+				#	remove_diplomatic_pact = {
+				#		country = prev
+				#		type = protectorate
+				#	}
+				#}			
+			}
+			every_scope_state = {
+				limit = {
+					OR = {
+						state_region = s:STATE_LOMBARDY
+						state_region = s:STATE_VENETIA
+					}
+				}
+				state_region = {
+					add_claim = ROOT
+				}
+			}
+			
+			create_diplomatic_play = {
+				name = "Second italian war of independece"
+				# war = yes
+				target_country = ROOT
+				type = dp_regime_change # dp_humiliation
+				
+				add_war_goal = {
+					holder = prev
+					type = return_state
+					target_state = s:STATE_LOMBARDY.region_state:AUS
+				}			
+			}
+			
+			hidden_effect = {
+				change_infamy = 30
+			}
+		}
+	}
+
+	ai_chance = {
+		base = 0
+		modifier = {
+			trigger = {
+				game_date < 1855.1.1
+			}
+			add = -14
+		}
+		modifier = {
+			trigger = {
+				any_country = {
+					NOR = {
+						country_has_primary_culture = cu:north_italian
+						country_has_primary_culture = cu:south_italian
+					}
+					any_scope_state = {
+						OR = {
+							state_region = s:STATE_LOMBARDY
+							state_region = s:STATE_VENETIA
+						}
+					}
+					NOT = {	has_truce_with = c:FRA }
+					NOT = {	has_truce_with = root }
+					# ~ military_size < c:FRA.military_size
+					"ai_army_comparison(c:FRA)" < 0
+				}
+			}
+			# ~ add = "c:FRA.ai_army_comparison(scope:italian_oppressor)"
+			# ~ multiply = 100
+			add = 15
+		}
+		modifier = {
+			trigger = {
+				any_country = {
+					c:FRA ?= this
+					OR = {
+						has_modifier = declared_bankruptcy
+						in_default = yes
+					}
+				}
+			}
+			add = -100
+		}
+	}
+}
+
+france_annex_luxembourg = {
+	is_shown = {
+		has_dlc_feature = voice_of_the_people_content
+		exists = c:FRA
+		c:FRA = ROOT
+		NOT = { has_global_variable = fra_annexed_lux }
+		is_subject = no
+		exists = c:LUX
+		c:LUX = {
+			is_player = no
+			is_subject = yes
+			top_overlord = {
+				NOT = { THIS = ROOT }
+				NOT = { is_subject_of = ROOT }
+				is_player = no
+			}
+		}
+	}
+
+	possible = {
+		has_technology_researched = nationalism
+		owns_entire_state_region = STATE_ALSACE_LORRAINE
+		taking_loans = no
+		c:LUX = {
+			top_overlord = {
+				is_subject = no
+				relations:root >= relations_threshold:amicable
+				is_at_war = no
+				is_revolutionary = no
+				taking_loans = yes
+			}
+		}
+	}
+
+	when_taken = {
+		set_global_variable = fra_annexed_lux
+		trigger_event = { id = natural_borders.5 popup = yes }
+		show_as_tooltip = {
+			annex = c:LUX
+			add_modifier = {
+				name = luxembourg_payment
+				months = 12
+				multiplier = 20000
+			}
+		}
+	}
+
+	ai_chance = {
+		base = 1
+	}
+}

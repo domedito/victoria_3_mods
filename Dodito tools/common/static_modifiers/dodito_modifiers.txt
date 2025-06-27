@@ -1,0 +1,34 @@
+﻿austrian_nerf_modifier = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_negative.dds
+	country_tech_spread_mult = -0.25
+	unit_offense_mult = -0.5
+	unit_defense_mult = -0.5
+}
+
+italian_nationalist_unrest = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_negative.dds
+	unit_offense_mult = -0.5
+	unit_defense_mult = -0.5
+}
+
+dodito_ig_forced_to_open_market = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
+	interest_group_ig_landowners_pol_str_mult = -5.0
+}
+
+dodito_trade_colony_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	state_migration_pull_mult = 5
+	state_standard_of_living_add = 1
+	country_prestige_mult = 0.05
+	state_infrastructure_add = 10
+	state_market_access_price_impact = 0.1
+}
+
+
+dodito_opium_exporter_modifier = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	state_trade_advantage_mult = 1
+	state_trade_capacity_mult = 1
+}
+

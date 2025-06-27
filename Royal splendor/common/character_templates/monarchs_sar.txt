@@ -1,0 +1,110 @@
+﻿### Savoyard historic monarchs template file ###
+
+
+is_sar_carlo_alberto_01 = {
+	is_general = yes
+	first_name = Carlo_Alberto
+	last_name = di_Savoia
+	historical = yes
+	ruler = yes
+	birth_date = 1798.10.2
+	dna = dna_sar_carlo_alberto_01_02
+	#dna = ecchi_dna_benito_mussolini
+	interest_group = ig_intelligentsia #ig_armed_forces
+	ideology = ideology_reformer # ideology_royalist
+	traits = {
+		brave
+        erudite
+        literary
+        psychological_affliction
+        sickly
+	}
+	on_created = {
+		set_variable = is_married
+	}
+}
+
+is_sar_vittorio_emanuele_02 = {
+	first_name = dodito_Vittorio_Emanuele_II
+	last_name = di_Savoia
+	historical = yes
+	heir = yes
+	birth_date = 1820.3.14 # pi day!
+	dna = dna_sar_vittorio_emanuele_02_01
+	# dna = ecchi_dna_adolf_hitler
+	interest_group = ig_industrialists # ig_intelligentsia
+    ideology = ideology_reformer # ideology_moderate
+	traits = {
+		ambitious
+		direct
+	}
+	on_created = {
+		set_variable = is_married
+	}
+}
+
+is_sar_umberto_01 = {
+	heir = yes
+	culture = cu:north_italian
+	first_name = dodito_Umberto_I
+	last_name = di_Savoia
+	historical = yes
+	ig_leader = no
+	noble = yes
+	dna = dna_sar_umberto_01
+	interest_group = ig_armed_forces # ig_petty_bourgeoisie
+	ideology = ideology_moderate # ideology_authoritarian
+	traits = {
+		#wrathful
+		#cruel
+		direct	
+	}
+	birth_date = 1844.3.14
+	on_created = {
+		set_variable = is_married
+	}
+}
+
+is_sar_vittorio_emanuele_03 = {
+	heir = yes
+	culture = cu:north_italian
+	first_name = dodito_Vittorio_Emanuele_III
+	last_name = di_Savoia
+	historical = yes
+	ig_leader = no
+	noble = yes
+	dna = dna_sar_vittorio_emanuele_03
+	interest_group = ig_petty_bourgeoisie
+	ideology = ideology_moderate
+	traits = {
+		tactful	
+		reserved
+	}
+	birth_date = 1869.11.11
+	on_created = {
+		set_variable = is_married
+	}
+}
+
+is_sar_umberto_02 = {
+	heir = yes
+	culture = cu:north_italian
+	first_name = Umberto
+	last_name = di_Savoia
+	historical = yes
+	ig_leader = no
+	noble = yes
+	dna = dna_sar_umberto_02
+	interest_group = ig_petty_bourgeoisie
+	ideology = ideology_moderate
+	traits = {
+		cautious
+	}
+	birth_date = 1904.9.15
+	on_created = {
+		set_variable = is_married
+	}
+	trait_generation = {
+		# nothing!
+	}
+}
