@@ -575,11 +575,11 @@ je_risorgimento_austrian_radicals_button = {
 						}
 					}
 					add_radicals_in_state = {
-						value = 0.25
+						value = 0.30
 						culture = cu:north_italian
 					}
 					add_radicals_in_state = {
-						value = 0.25
+						value = 0.30
 						culture = cu:south_italian
 					}
 				}

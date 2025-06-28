@@ -966,7 +966,7 @@ ai_strategy_economic_imperialism = {
 				has_technology_researched = nationalism # Just to make sure it doesn't happen immediately in 1836
 				country_rank = rank_value:great_power
 				navy_size >= 25
-				has_law = law_type:ironclad_tech
+				has_technology_researched = ironclad_tech
 				scope:target_country = {
 					exists = c:JAP
 					this = c:JAP
@@ -1030,7 +1030,7 @@ ai_strategy_economic_imperialism = {
 		region_japan = { # Great Powers with significant navies should pay attention to Japan
 			if = {
 				limit = {
-					has_law = law_type:ironclad_tech
+					has_technology_researched = ironclad_tech
 					exists = c:JAP
 					c:JAP = { has_law = law_type:law_isolationism }
 					country_rank = rank_value:great_power
@@ -1176,7 +1176,7 @@ ai_strategy_economic_imperialism = {
 					}
 					else_if = { # Very high score for opening Japan
 						limit = {
-							has_law = law_type:ironclad_tech
+							has_technology_researched = ironclad_tech
 							scope:target_country = {
 								exists = c:JAP
 								this = c:JAP
@@ -1210,7 +1210,7 @@ ai_strategy_economic_imperialism = {
 					}
 					else_if = { # Very high score for opening Japan
 						limit = {
-							has_law = law_type:ironclad_tech
+							has_technology_researched = ironclad_tech
 							scope:target_country = {
 								exists = c:JAP
 								this = c:JAP

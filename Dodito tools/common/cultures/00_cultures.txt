@@ -14363,9 +14363,9 @@ platinean= {
 	religion = catholic
 	traits = { hispanophone european_heritage }
 	
-	obsessions = {
-		meat
-	}
+	#obsessions = {
+	#	meat
+	#}
 	
 	male_common_first_names = {
 		Agustin Antonio Atanasio

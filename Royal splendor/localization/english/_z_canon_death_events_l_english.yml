@@ -35,3 +35,9 @@
  canon_death.6.d:0 "His majesty King Pedro is ill. A recent epidemic has reached the royal circle, taking the lives of a few royal family members. The King is strong, but it is unclear if he will make it."
  canon_death.6.f:0 "“At the age of 24 the young Portuguese monarch himself now dies of a terrible disease, after a life chequered with troubles, while one of his just dead brothers still lies uncoffined, and a third of the brothers is prostrate with the same disease.”"
  canon_death.6.a:0 "Only the good die young…"
+
+#Ferdinand 01 of Austria
+ canon_death.7.t:0 "[SCOPE.sCharacter('canon_dead_Ferd_01').GetName] is Gravely Ill"
+ canon_death.7.d:0 "[SCOPE.sCharacter('canon_dead_Ferd_01').GetName] is bedridden after catching an unidentified illness. His health is rapidly deteriorating, and it is unclear whether he will survive."
+ canon_death.7.f:0 "“[SCOPE.sCharacter('canon_dead_Ferd_01').GetName] was on a tour abroad when he suddenly got sick. It was initially brushed aside as he continued his travels. However, the condition worsened as a cerebral hemorrhage left one side of his body temporarily paralyzed. The rest of the royal family are on their way to visit him, perhaps for the final time.”"
+ canon_death.7.a:0 "Devastating news!"

@@ -1052,11 +1052,12 @@ on_monthly_pulse_country = {
 				ROOT = c:AUS
 				OR = {
 					ruler ?= { has_template = is_aus_ferdinand_01 }
+					heir ?= { has_template = is_aus_ferdinand_01 }
 				}
-				game_date >= 1948.12.2
 			}
-			ruler = {
-				kill_character = yes
+			trigger_event = { 
+				id = canon_death.7 
+				days = 1
 			}
 		}
 		# Canon Death for Rudolf von Habsburg

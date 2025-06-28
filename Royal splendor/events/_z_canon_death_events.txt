@@ -300,3 +300,43 @@ canon_death.6 = {
 		}
 	}
 }
+
+# Morte scriptata di Ferdinando I d'Austria
+canon_death.7 = {
+    type = country_event
+    placement = ROOT
+
+    title = canon_death.7.t
+    desc = canon_death.7.d
+    flavor = canon_death.7.f
+    duration = 1
+    gui_window = event_window_1char_tabloid
+    left_icon = scope:canon_dead_Ferd_01
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+	
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+    
+	trigger = {
+        ruler = { has_template = is_aus_ferdinand_01 }
+        game_date >= 1848.12.02
+    }
+    
+	immediate = {
+		# if ruler has the template ferdinand_01, give them the canon_dead_Ferd_01 scope
+		if = {
+			limit = {
+				ruler = { has_template = is_aus_ferdinand_01 }
+			}
+			ruler = { save_scope_as = canon_dead_Ferd_01 }
+		}
+	}
+    
+	option = {
+        name = canon_death.7.a
+		scope:canon_dead_Ferd_01 = {
+			kill_character = yes
+		}
+    }
+}
