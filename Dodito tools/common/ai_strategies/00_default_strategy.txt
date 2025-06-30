@@ -6331,31 +6331,6 @@ ai_strategy_default = {
 			}
 		}	
 		
-		take_treaty_port = {
-			add = scope:target_state.ai_treaty_port_value:root	
-			
-			# Britain should go for Hong Kong when starting Opium Wars play against Qing
-			if = {
-				limit = {
-					has_journal_entry = je_opium_wars
-					NOT = { is_diplomatic_play_enemy_of = scope:target_country }
-					scope:target_country = {
-						has_variable = opium_wars_target
-					}
-				}
-				if = {
-					limit = {
-						scope:target_state = {
-							state_region = s:STATE_SHAOZHOU
-						}					
-					}
-					add = 1000
-				}
-				else = {
-					multiply = 0
-				}
-			}
-		}
 
 		transfer_subject = {
 			if = {

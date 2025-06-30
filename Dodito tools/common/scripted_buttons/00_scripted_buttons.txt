@@ -559,6 +559,20 @@ je_risorgimento_austrian_radicals_button = {
 					}
 				}
 			}
+			random_political_movement = {
+				limit = {
+					is_political_movement_type = movement_cultural_minority
+					OR = {
+						culture ?= cu:north_italian
+						culture ?= cu:south_italian
+					}
+				}
+				save_scope_as = italian_nationalist_movement
+				add_modifier = {
+					name = modifier_italian_unificationist_sentiment
+					days = normal_modifier_time
+				}
+			}
 			every_scope_state = {
 				limit = {
 					state_region = { 
@@ -575,11 +589,11 @@ je_risorgimento_austrian_radicals_button = {
 						}
 					}
 					add_radicals_in_state = {
-						value = 0.30
+						value = 0.25
 						culture = cu:north_italian
 					}
 					add_radicals_in_state = {
-						value = 0.30
+						value = 0.25
 						culture = cu:south_italian
 					}
 				}
@@ -656,7 +670,7 @@ je_risorgimento_italian_radicals_button = {
 	}
 
 	ai_chance = {
-		value = 10
+		value = 50
 		if = {
 			limit = {
 				has_law = law_type:law_theocracy

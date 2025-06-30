@@ -301,19 +301,23 @@
 			# Britain should go for Hong Kong when starting Opium Wars play against Qing
 			if = {
 				limit = {
-					has_journal_entry = je_opium_wars
-					NOT = { is_diplomatic_play_enemy_of = scope:target_country }
 					scope:target_country = {
+						has_journal_entry = je_opium_wars
+					}
+					#NOT = { is_diplomatic_play_enemy_of = scope:target_country }
+					scope:source_country = {
 						has_variable = opium_wars_target
 					}
 				}
 				if = {
 					limit = {
 						scope:article.input_state = {
-							NOT = { state_region = s:STATE_SHAOZHOU }
+							state_region = s:STATE_SHAOZHOU
 						}
 					}
-					add = -100
+					add = 100
+				}
+				else = {
 					multiply = 0
 				}
 			}

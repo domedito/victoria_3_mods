@@ -21,7 +21,7 @@ gbr_monarch_birth.1 = {
 
 	trigger = {
 		ruler = { has_template = is_gbr_victoria_01 }
-		NOT = { heir =  { has_template = is_gbr_edward_07 } }
+		NOT = { heir ?=  { has_template = is_gbr_edward_07 } }
 		game_date >= 1841.11.9
 		game_date < 1842.1.10
 	}

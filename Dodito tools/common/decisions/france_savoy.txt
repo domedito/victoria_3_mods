@@ -240,7 +240,7 @@ sell_savoy = {
 				if = {
 					limit = {
 						any_scope_treaty = {
-							binds = scope:prev
+							binds = scope:italian_oppressor
 							any_scope_article = {
 								OR = {
 									has_type = alliance
@@ -251,7 +251,7 @@ sell_savoy = {
 					}
 					every_scope_treaty = {
 						limit = {
-							binds = scope:prev
+							binds = scope:italian_oppressor
 							any_scope_article = {
 								OR = {
 									has_type = alliance
@@ -260,19 +260,19 @@ sell_savoy = {
 							}
 						}
 						withdraw = {
-							country = root
+							country = this
 						}
 					}
 				}
 				if = {
 					limit = {
 						has_diplomatic_pact = {
-							who = prev
+							who = root
 							type = protectorate
 						}
 					}
 					remove_diplomatic_pact = {
-						country = prev
+						country = root
 						type = protectorate
 					}
 				}			
@@ -309,15 +309,11 @@ sell_savoy = {
 	}
 
 	ai_chance = {
-		value = 0
+		value = 1
+
 		if = {
 			limit = {
-				game_date < 1855.1.1
-			}
-			add = -14
-		}
-		if = {
-			limit = {
+				game_date >= 1855.1.1
 				any_country = {
 					NOR = {
 						country_has_primary_culture = cu:north_italian
@@ -336,7 +332,7 @@ sell_savoy = {
 			}
 			# ~ add = "c:FRA.ai_army_comparison(scope:italian_oppressor)"
 			# ~ multiply = 100
-			add = 15
+			add = 20
 		}
 		if = {
 			limit = {
