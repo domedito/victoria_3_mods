@@ -126,6 +126,10 @@ je_meiji_restoration = {
 			limit = { has_modifier = hokkaido_colonization_modifier }
 			remove_modifier = hokkaido_colonization_modifier
 		}	
+		if = {
+			limit = { has_modifier = dodito_ig_forced_to_open_market }
+			remove_modifier = dodito_ig_forced_to_open_market
+		}	
 		s:STATE_SAKHALIN = {
 			add_claim = root
 		}
