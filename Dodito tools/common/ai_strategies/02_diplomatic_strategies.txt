@@ -800,7 +800,7 @@ ai_strategy_armed_isolationism = {
 		}
 
 		if = {
-			limit = { has_law = law_type:law_isolationism }
+			limit = { has_law_or_variant = law_type:law_isolationism }
 			add = 100
 		}
 
@@ -970,7 +970,7 @@ ai_strategy_economic_imperialism = {
 				scope:target_country = {
 					exists = c:JAP
 					this = c:JAP
-					has_law = law_type:law_isolationism
+					has_law_or_variant = law_type:law_isolationism
 					gdp >= 5000000
 				}
 			}
@@ -1032,7 +1032,7 @@ ai_strategy_economic_imperialism = {
 				limit = {
 					has_technology_researched = ironclad_tech
 					exists = c:JAP
-					c:JAP = { has_law = law_type:law_isolationism }
+					c:JAP = { has_law_or_variant = law_type:law_isolationism }
 					country_rank = rank_value:great_power
 					navy_size >= 25
 				}
@@ -1050,7 +1050,7 @@ ai_strategy_economic_imperialism = {
 					country_rank = rank_value:great_power
 					navy_size >= 25
 					scope:target_country = {
-						has_law = law_type:law_isolationism
+						has_law_or_variant = law_type:law_isolationism
 						gdp >= 2000000
 						capital.region = sr:region_japan
 					}
@@ -1062,7 +1062,7 @@ ai_strategy_economic_imperialism = {
 					NOT = { scope:target_country = { is_subject_of = root } }
 					has_strategic_adjacency = scope:target_country
 					scope:target_country = {
-						has_law = law_type:law_isolationism
+						has_law_or_variant = law_type:law_isolationism
 						gdp >= 2000000
 						NOT = { capital.region = sr:region_japan }
 					}
@@ -1079,7 +1079,7 @@ ai_strategy_economic_imperialism = {
 					scope:target_country = {
 						NOR = {
 							has_law = law_type:law_free_trade
-							has_law = law_type:law_isolationism
+							has_law_or_variant = law_type:law_isolationism
 						}
 					}
 				}
@@ -1113,7 +1113,7 @@ ai_strategy_economic_imperialism = {
 			if = {
 				limit = {
 					scope:target_country = {
-						has_law = law_type:law_isolationism
+						has_law_or_variant = law_type:law_isolationism
 						gdp >= 2000000
 						capital.region = sr:region_japan
 					}
@@ -1135,7 +1135,7 @@ ai_strategy_economic_imperialism = {
 			limit = {
 				can_reach_target_state = yes
 				scope:target_country = {
-					has_law = law_type:law_isolationism
+					has_law_or_variant = law_type:law_isolationism
 					gdp >= 2000000 # Not worth doing against very small markets
 				}
 				scope:target_state = { is_incorporated = yes }
@@ -1162,7 +1162,7 @@ ai_strategy_economic_imperialism = {
 					country_rank = rank_value:great_power
 					can_reach_target_country = yes
 					scope:target_country = {
-						has_law = law_type:law_isolationism
+						has_law_or_variant = law_type:law_isolationism
 						gdp >= 5000000 # Not worth doing against small markets
 					}
 				}
@@ -1180,7 +1180,7 @@ ai_strategy_economic_imperialism = {
 							scope:target_country = {
 								exists = c:JAP
 								this = c:JAP
-								has_law = law_type:law_isolationism
+								has_law_or_variant = law_type:law_isolationism
 							}
 						}
 						multiply = 10
@@ -1196,7 +1196,7 @@ ai_strategy_economic_imperialism = {
 					country_rank = rank_value:great_power
 					can_reach_target_country = yes
 					scope:target_country = {
-						has_law = law_type:law_isolationism
+						has_law_or_variant = law_type:law_isolationism
 						gdp >= 5000000 # Not worth doing against small markets
 					}
 				}
@@ -1214,7 +1214,7 @@ ai_strategy_economic_imperialism = {
 							scope:target_country = {
 								exists = c:JAP
 								this = c:JAP
-								has_law = law_type:law_isolationism
+								has_law_or_variant = law_type:law_isolationism
 							}
 						}
 						multiply = 10
@@ -1228,7 +1228,7 @@ ai_strategy_economic_imperialism = {
 		is_subject = no
 		navy_size >= 25
 		is_country_type = recognized
-		NOT = { has_law = law_type:law_isolationism }
+		NOT = { has_law_or_variant = law_type:law_isolationism }
 		OR = {
 			country_rank = rank_value:major_power
 			country_rank = rank_value:great_power
@@ -1271,7 +1271,7 @@ ai_strategy_economic_imperialism = {
 			limit = {
 				exists = c:JAP
 				has_strategic_adjacency = c:JAP
-				c:JAP = { has_law = law_type:law_isolationism }
+				c:JAP = { has_law_or_variant = law_type:law_isolationism }
 			}
 			multiply = 2.0
 		}
@@ -1375,6 +1375,7 @@ ai_strategy_unify_germany = {
 				scope:target_country = {
 					is_unification_candidate = GER
 				}
+				NOT = { has_journal_entry = je_schleswig_holstein_question }
 			}
 			add = 0.25
 
@@ -1889,7 +1890,6 @@ ai_strategy_unify_italy = {
 				add = 1000
 			}			
 		}		
-
 	}
 		
 	possible = {
@@ -2400,7 +2400,7 @@ ai_strategy_socialism_in_one_country = {
 		}
 
 		if = {
-			limit = { has_law = law_type:law_isolationism }
+			limit = { has_law_or_variant = law_type:law_isolationism }
 			add = 200
 		}
 
@@ -2599,7 +2599,7 @@ ai_strategy_world_revolution = {
 		}
 
 		if = {
-			limit = { has_law = law_type:law_isolationism }
+			limit = { has_law_or_variant = law_type:law_isolationism }
 			add = -200
 		}
 
