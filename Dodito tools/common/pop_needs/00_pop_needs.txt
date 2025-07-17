@@ -261,7 +261,7 @@ popneed_free_movement = {
 	entry = {
 		goods = transportation
 
-		weight = 1.5 #1
+		weight = 1.25 #1
 		max_supply_share = 0.75
 		min_supply_share = 0.25 #vanila 0
 	}
@@ -269,7 +269,7 @@ popneed_free_movement = {
 	entry = {
 		goods = automobiles
 		
-		weight = 0.75 #1.25
+		weight = 1 #1.25
 		max_supply_share = 0.75 #0.5 #vanila 1
 		min_supply_share = 0.0
 	}
@@ -281,15 +281,15 @@ popneed_communication = {
 	entry = {
 		goods = transportation
 
-		weight = 1
+		weight = 1.25
 		max_supply_share = 0.75
-		min_supply_share = 0.25 #0.1 #vanila 0
+		min_supply_share = 0.1 #vanila 0
 	}
 
 	entry = {
 		goods = telephones
 
-		weight = 1 #2
+		weight = 1.5 #2
 		max_supply_share = 0.75 #vanila 1
 		min_supply_share = 0.0
 	}
