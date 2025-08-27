@@ -344,9 +344,22 @@ ai_strategy_default = {
 					}
 				}
 			}
-			add = {
-				value = 150
-				desc = rsm_support
+			if = {
+				limit = {
+					root = {
+						has_strategy = ai_strategy_unify_italy
+					}
+				}
+				add = {
+					value = 150
+					desc = rsm_support
+				}
+			}
+			else = {
+				add = {
+					value = 50
+					desc = rsm_support
+				}
 			}
 		}
 		
@@ -423,12 +436,14 @@ ai_strategy_default = {
 			if = {
 				limit = {				
 					NOR = {
-						scope:country = {
-							OR = {
-								country_has_primary_culture = cu:north_italian
-								country_has_primary_culture = cu:south_italian
-							}
-						}
+						# scope:country = {
+						# 	# Evaluate only towards the enemy of the Italian country
+						# 	# i.e.: apply the debuff only to Austria (ok?)
+						# 	OR = {
+						# 		country_has_primary_culture = cu:north_italian
+						# 		country_has_primary_culture = cu:south_italian
+						# 	}
+						# }
 						owes_obligation_to = scope:country
 						any_scope_treaty = {
 							binds = scope:country
@@ -441,11 +456,7 @@ ai_strategy_default = {
 							any_scope_treaty = {
 								binds = scope:country
 								any_scope_article = {
-									OR = {
-										has_type = alliance
-										has_type = defensive_pact
-										has_type = guarantee_independence
-									}
+									has_type = defensive_pact
 								}
 							}
 						}							
@@ -6358,6 +6369,19 @@ ai_strategy_default = {
 				add = scope:target_country.ai_subject_value:root
 			}
 
+
+			if = {
+				#Stop taking Korea or Tibet in opium wars
+				limit = {
+					has_journal_entry = je_opium_wars
+					scope:target_country = {
+						has_variable = opium_wars_target
+					}
+				}
+				#add = -100
+				multiply = 0
+			}
+
 			if = {
 				limit = {
 					wants_to_solve_schleswig_holstein = yes
@@ -6366,16 +6390,6 @@ ai_strategy_default = {
 					can_reach_target_country = yes
 				}
 				add = 100
-			}
-
-			if = {
-				limit = {
-					has_journal_entry = je_opium_wars
-					scope:target_country = {
-						has_variable = opium_wars_target
-					}
-				}
-				multiply = 0
 			}
 
 			min = 0
@@ -6994,6 +7008,27 @@ ai_strategy_default = {
 				add = 100
 			}
 
+			if = {
+				#Stop liberating Trieste during Risorgimento
+				limit = {
+					has_journal_entry = je_risorgimento
+					scope:target_country = {
+						NOR = {
+							country_has_primary_culture = cu:north_italian
+							country_has_primary_culture = cu:south_italian
+						}
+						any_scope_state = {
+							OR = {
+								state_region = s:STATE_LOMBARDY
+								state_region = s:STATE_VENETIA
+							}
+						}
+						is_player = no
+					}
+				}
+				multiply = 0
+			}	
+			
 			# Relations with target
 			multiply = {
 				value = "scope:target_country.relations:root"

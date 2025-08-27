@@ -115,15 +115,15 @@ je_opium_wars = {
 				has_law = law_type:law_free_trade
 			}
 			has_treaty_foreign_investment_rights_with = { TARGET = scope:target }
-			has_treaty_port_in_market = scope:target.market
-			# any_scope_state = {
-			# 	is_treaty_port = yes
-			# 	state_region = {
-			# 		any_scope_state = {
-			# 			owner = scope:target
-			# 		}
-			# 	}
-			# }
+			# has_treaty_port_in_market = scope:target.market
+			any_scope_state = {
+				is_treaty_port = yes
+				state_region = {
+					any_scope_state = {
+						owner = scope:target
+					}
+				}
+			}
 		}
 		hidden_trigger = {
 			scope:target = {

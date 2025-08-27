@@ -467,11 +467,11 @@ indipendence_war_end_on_action = {
 					any_scope_play_involved = { c:FRA ?= this }
 					has_global_variable = fra_savoy_sardinia 
 					any_country = {
-						NOT = { this = c:FRA }
-						is_at_war = no
+						#is_at_war = no
 						any_scope_state = {
 							state_region = s:STATE_SAVOY
 						}
+						NOT = { this = c:FRA }
 					}
 				}
 				random_country = {

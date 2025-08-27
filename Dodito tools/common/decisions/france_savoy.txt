@@ -330,9 +330,21 @@ sell_savoy = {
 					"ai_army_comparison(c:FRA)" < 0
 				}
 			}
-			# ~ add = "c:FRA.ai_army_comparison(scope:italian_oppressor)"
-			# ~ multiply = 100
-			add = 20
+			# add = {
+			# 	# value = "c:FRA.ai_army_comparison(scope:italian_oppressor)"
+			# 	# multiply = 1000
+			# }
+			# add = "c:FRA.ai_army_comparison(scope:italian_oppressor)"
+			# add = "c:FRA.ai_army_comparison(scope:prev)"
+			if = {
+				limit = {
+					game_date < 1858.7.21
+				}
+				add = 2
+			}
+			else = {
+				add = 10
+			}
 		}
 		if = {
 			limit = {

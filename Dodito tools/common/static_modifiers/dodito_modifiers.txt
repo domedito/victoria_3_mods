@@ -1,8 +1,8 @@
 ﻿austrian_nerf_modifier = {
     icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_negative.dds
 	country_tech_spread_mult = -0.25
-	unit_offense_mult = -0.5
-	unit_defense_mult = -0.5
+	unit_offense_mult = -0.25
+	unit_defense_mult = -0.25
 }
 
 italian_nationalist_unrest = {
