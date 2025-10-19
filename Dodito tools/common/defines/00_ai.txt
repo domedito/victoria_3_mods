@@ -744,7 +744,7 @@
 
 	# Below data is used to calculate how much weight the AI places on a production building
 	PRODUCTION_BUILDING_RANDOM_FACTOR = 10.0 # The higher this is, the more random AI construction will be
-	PRODUCTION_BUILDING_STATE_RANDOM_FACTOR = 1.0 # The higher this is, the more random AI state selection for building types will be
+	PRODUCTION_BUILDING_STATE_RANDOM_FACTOR = 0.5 # The higher this is, the more random AI state selection for building types will be
 	PRODUCTION_BUILDING_BASE_VALUE = 1000 # If no ai_value is scripted in the building
 	PRODUCTION_BUILDING_NO_AVAILABLE_WORKFORCE_FACTOR = 0.25 # Total weight is multiplied by this if the state lacks enough workforce to staff the building
 	PRODUCTION_BUILDING_GOODS_PROFIT_FACTOR = 5000 # Per pound of predicted building profit (divided by employee count per level)
@@ -805,13 +805,13 @@
 	AUTONOMOUS_INVESTMENT_COMPANY_TARGET_BUILDING_TYPE_CONSTRUCTION_FACTOR = 5
 	AUTONOMOUS_INVESTMENT_COMPANY_TARGET_STATE_NO_BUILDING_CONSTRUCTION_FACTOR = 20 # Applied when the state does not already have the target building type
 	AUTONOMOUS_INVESTMENT_COMPANY_TARGET_STATE_WITH_BUILDING_CONSTRUCTION_FACTOR = 50 # Applied when the state *does* already have the target building type
-	
+
 	PRODUCTION_BUILDING_TREATY_PORT_TRADE_CENTER_FACTOR = 5.0 		# Score for Trade Center buildings in Treaty Ports is multiplied by this when selecting state for a construction
 	PRODUCTION_BUILDING_TREATY_PORT_NON_TRADE_CENTER_FACTOR = 0.10 	# Score for non Trade Center buildings in Treaty Ports is multiplied by this when selecting state for a construction
 
 	# The factors below are only applied to government constructions
 	PRODUCTION_BUILDING_GOVERNMENT_CONSTRUCTION_MONOPOLY_MULT = 1.5 # Multiply score by this if we have a government monopoly for the buildng type
-	
+
 	PRODUCTION_BUILDING_LOW_EMPLOYMENT_THRESHOLD = 0.8 # The AI will not expand buildings with less than this employment unless those buildings hired last week
 
 	# The factors below are only applied to autonomous investments
@@ -1070,6 +1070,9 @@
 	COMPANY_TYPE_DEFAULT_BASE_WEIGHT = 1	 			# Base weight for companies, can be overriden by ai_weight in database
 	COMPANY_TYPE_RANDOM_FACTOR = 1						# The higher this is, the more random AI selection of companies will be
 	COMPANY_TYPE_STICKYNESS = 3							# The weight for the company the AI is already planning to create is multiplied by this
+	COMPANY_TYPE_STICKYNESS_DURATION_MONTHS = 60		# After this many months, the stickyness for the company the AI is planning to form is removed
+	COMPANY_TYPE_FORMABLE_FACTOR = 1.25					# Increase weight for a company by this if it's instantly formable 
+	COMPANY_TYPE_FORMABLE_MULTIPLE_FREE_SLOTS_FACTOR = 5.0	# Replaces COMPANY_TYPE_FORMABLE_FACTOR if the country has more than one free company slot
 	COMPANY_TYPE_PRODUCTIVITY_FACTOR = 0.25				# Multiplier for AI weight of companies is increased by ( this * predicted building productivity )
 	COMPANY_TYPE_PRODUCTIVITY_MAX = 4.0					# Effects of COMPANY_TYPE_PRODUCTIVITY_FACTOR  cannot be higher than this
 	COMPANY_TYPE_BUILDING_LEVELS_FACTOR	= 0.1			# Multiplier for AI weight of companies is increased by ( this * num building levels )

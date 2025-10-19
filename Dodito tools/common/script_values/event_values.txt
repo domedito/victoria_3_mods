@@ -46,7 +46,7 @@ money_amount_multiplier_very_small = {
 	multiply = 0.075
 	round = yes
 	multiply = 10
-	min = 100	
+	min = 100
 }
 
 # 0.025% of GDP, rounded to nearest 100
@@ -215,3 +215,7 @@ risorgimento_action_cooldown_years = 5
 
 # for American Civil War JEs
 acw_reincorporate_dixie_loyalist_min = 0.2
+dixie_loyalist_fraction = { # for loc
+	value = 0
+	add = "loyalist_fraction(cu:dixie)"
+}
